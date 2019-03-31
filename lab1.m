@@ -1,4 +1,15 @@
 clear;clc;close all;
+% ------ Shared graph settings -------
+
+gcaSettings = {...
+    'XGrid','on',...
+    'YGrid', 'on',...
+    'Fontsize', 13,...
+    'linewidth', 1,...
+    'FontName', 'AvantGarde'};
+labelSettings = {'Interpreter','latex'};
+
+% -------------------------------------
 
 Data =[...
     0 0 0 0;...
@@ -73,6 +84,7 @@ sim_v = polyval(p_v, t_avg);
 figure(2)
 hold on
 plot(t_avg, sim_v)
+grid on
 
 %% Momentan 2 C
 
@@ -82,6 +94,7 @@ sim_a = polyval(p_a,t_avg);
 figure(3)
 hold on
 plot(t_avg, sim_a)
+grid on
 
 %% Simulering 
 g = 9.81;
@@ -91,78 +104,73 @@ dt = 0.001;
 t_i = 0;
 t_f = 2;
 t = linspace(t_i,t_f, (t_f-t_i)/dt);
+N = length(t);
 
 %% F_f = 0
 
-for i=1:length(t)
+for i=1:N
     a(i) = g;
     v(i+1) = v(i) + a(i)*dt;
     s(i+1) = s(i) + v(i)*dt;
 end
 
 figure(1)
-plot(t,s(1:length(t)),'k--')
+plot(t,s(1:N),'k--')
 figure(2)
-plot(t,v(1:length(t)),'k--')
+plot(t,v(1:N),'k--')
 figure(3)
-plot(t,a(1:length(t)),'k--')
+plot(t,a(1:N),'k--')
 
 %% F_f = bv
 
-for i=1:length(t)
+for i=1:N
     a(i) = g*(1-v(i)/6);
     v(i+1) = v(i) + a(i)*dt;
     s(i+1) = s(i) + v(i)*dt;
 end
 
 figure(1)
-plot(t,s(1:length(t)),'k-.')
+plot(t,s(1:N),'k-.')
 figure(2)
-plot(t,v(1:length(t)),'k-.')
+plot(t,v(1:N),'k-.')
 figure(3)
-plot(t,a(1:length(t)),'k-.')
+plot(t,a(1:N),'k-.')
 
 %% F_f = Bv^2
 
-for i=1:length(t)
+for i=1:N
     a(i) = g*(1-(v(i)/6)^2);
     v(i+1) = v(i) + a(i)*dt;
     s(i+1) = s(i) + v(i)*dt;
 end
 
 figure(1)
-plot(t,s(1:length(t)),'k-')
+plot(t,s(1:N),'k-')
 
 title('Stracka-tid-diagram','Interpreter','latex')
-set(gca,'XGrid','on','YGrid', 'on',...
-    'Fontsize', 13, 'linewidth', 1,...
-    'FontName', 'AvantGarde')
-xlabel('$t$/$s$','Interpreter','latex')
-ylabel('$hojd$/$m$','Interpreter','latex')
+set(gca,gcaSettings(1:2:end),gcaSettings(2:2:end))
+xlabel('$t$/$s$', labelSettings(1:2:end), labelSettings(2:2:end))
+ylabel('$hojd$/$m$', labelSettings(1:2:end), labelSettings(2:2:end))
 legend('Experimentella värden','Anpassning','Sim. utan luftmotstånd',...
     'Sim. linjärt luftmotstånd','Sim. kvadratiskt luftmotstånd');
 
 figure(2)
-plot(t,v(1:length(t)),'k-')
+plot(t,v(1:N),'k-')
 
 title('Hastighet-tid-diagram','Interpreter','latex')
-set(gca,'XGrid','on','YGrid', 'on',...
-    'Fontsize', 13, 'linewidth', 1,...
-    'FontName', 'AvantGarde')
-xlabel('$t$/$s$','Interpreter','latex')
-ylabel('$v$/$ms^{-1}$','Interpreter','latex')
+set(gca,gcaSettings(1:2:end),gcaSettings(2:2:end))
+xlabel('$t$/$s$', labelSettings(1:2:end), labelSettings(2:2:end))
+ylabel('$v$/$ms^{-1}$', labelSettings(1:2:end), labelSettings(2:2:end))
 legend('Beräknat från exp. värden','Anpassning','Sim. utan luftmotstånd',...
     'Sim. linjärt luftmotstånd','Sim. kvadratiskt luftmotstånd');
 
 figure(3)
-plot(t,a(1:length(t)),'k-')
+plot(t,a(1:N),'k-')
 
 title('Acceleration-tid-diagram','Interpreter','latex')
-set(gca,'XGrid','on','YGrid', 'on',...
-    'Fontsize', 13, 'linewidth', 1,...
-    'FontName', 'AvantGarde')
-xlabel('$t$/$s$','Interpreter','latex')
-ylabel('$a$/$ms^{-2}$','Interpreter','latex')
+set(gca,gcaSettings(1:2:end),gcaSettings(2:2:end))
+xlabel('$t$/$s$', labelSettings(1:2:end), labelSettings(2:2:end))
+ylabel('$a$/$ms^{-2}$', labelSettings(1:2:end), labelSettings(2:2:end))
 legend('Beräknat från exp. värden','Sim. utan luftmotstånd',...
     'Sim. linjärt luftmotstånd','Sim. kvadratiskt luftmotstånd');
 
