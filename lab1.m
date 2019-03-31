@@ -73,7 +73,6 @@ sim_v = polyval(p_v, t_avg);
 figure(2)
 hold on
 plot(t_avg, sim_v)
-grid on
 
 %% Momentan 2 C
 
@@ -83,7 +82,6 @@ sim_a = polyval(p_a,t_avg);
 figure(3)
 hold on
 plot(t_avg, sim_a)
-grid on
 
 %% Simulering 
 g = 9.81;
