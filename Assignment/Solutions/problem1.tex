@@ -1,0 +1,24 @@
+\section*{Exponentiellt sönderfall}
+
+\begin{equation} \label{eq:I_t}
+	I(t) = I_0e^{-t/\tau}
+\end{equation}
+
+\begin{equation} \label{eq:log_I}
+	ln(I(t)) = -\dfrac{t}{\tau} + ln(I_0)
+\end{equation}
+
+
+
+\begin{eqnarray*}
+	k = -\dfrac{1}{\tau} \quad \Leftrightarrow \quad
+	\tau = -\dfrac{1}{t} \\
+	b = ln(I_0) \quad \Leftrightarrow \quad
+	I_0 = e^{b}
+\end{eqnarray*}
+
+
+\subsection*{MatLab kod}
+\addcontentsline{toc}{subsection}{MatLab kod} 
+
+\lstinputlisting[caption={Uppgift 1 dummy kod }] {Resources/Code/example.m}
