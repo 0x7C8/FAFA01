@@ -8,7 +8,13 @@
 	ln(I(t)) = -\dfrac{t}{\tau} + ln(I_0)
 \end{equation}
 
-
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering,margin=2cm}
+    \includegraphics[scale=0.4]{Resources/Graphics/fig1_1.eps}
+    \caption{BESKRIVNING}
+    \label{fig:1_1}
+\end{figure}
 
 \begin{eqnarray*}
 	k = -\dfrac{1}{\tau} \quad \Leftrightarrow \quad
@@ -17,8 +23,21 @@
 	I_0 = e^{b}
 \end{eqnarray*}
 
+\begin{figure}[!htb]
+    \minipage{0.47\textwidth}
+        \includegraphics[width=\linewidth]{Resources/Graphics/fig1_2.eps}
+        \caption{BESKRIVNING}\label{fig:1_2}
+    \endminipage\hfill
+    \minipage{0.47\textwidth}
+        \includegraphics[width=\linewidth]{Resources/Graphics/fig1_3.eps}
+        \caption{BESKRIVNING}\label{fig:1_3}
+    \endminipage
+\end{figure}
 
+
+\np
 \subsection*{MatLab kod}
-\addcontentsline{toc}{subsection}{MatLab kod} 
 
-\lstinputlisting[caption={Uppgift 1 dummy kod }] {Resources/Code/example.m}
+% TODO: Latex doesn't like ä in Matlab code :/
+% Change to English?
+\lstinputlisting[caption={\quad}] {Resources/Code/1.m}
