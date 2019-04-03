@@ -6,6 +6,11 @@
 %   Run each section (problem) separetly 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%% Constants
+% Run this part before solving excercise 
+g = 9.81;
+
+
 %% 1.74
 s_1 = 1.5;
 a = 15;
@@ -30,7 +35,6 @@ r_5 = (T_5/C)^(1/n);
 %% 2.69
 
 v_i = 20;
-g = 9.81;
 s_1 = 15;
 
 t_tot = 2*v_i/g;
@@ -80,11 +84,22 @@ a_t = -2*pi*r*b/(T+b*t_0)^2;
 
 answer = ["a: "+num2str(a_c,'%d'); "b: "+num2str(a_t,'%d')]
 
-%% 3.73
-
-
 
 %% 3.84
+
+h = 200;
+angle = 60;
+v_0 = 60;
+
+t = roots([1 -2*v_0*sind(angle)/g -2*h/g])
+x = v_0*cosd(angle)*t(1)
+
+%% 4.38
+
+%% 4.47 
+%% 4.59
+%% 4.75
+
 
 
 
