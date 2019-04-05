@@ -1,0 +1,30 @@
+\np 
+Med luftmotstånd: 
+\begin{align}
+    a_x = \dfrac{dv_x}{dt} &= -kv_x \label{eq:2b_ax}\\
+    a_y = \dfrac{dv_y}{dt} &= -kv_y -g \label{eq:2b_ay}
+\end{align}
+Efter integration av $a_x$:
+
+\begin{equation} \label{eq:2b_vx}
+    v_x(t) = \dfrac{dx}{dt} = v_{0,x}e^{-kt}
+\end{equation}
+var $v_{0,x}$ är $v_0cos\theta t$
+
+\begin{equation} \label{eq:2b_x}
+    x(t) = \dfrac{v_{0,x}}{k}\left( 1-e^{-kt} \right)
+\end{equation}
+
+
+\begin{equation} \label{eq:2b_y}
+    y(t) = \dfrac{1}{k}\left( \left(v_{0,y} + \frac{g}{k}\right)(1-e^{-kt}) -gt \right)
+\end{equation}
+var $v_{0,x}$ är $v_0sin\theta t$
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering,margin=2cm}
+    \includegraphics[scale=0.5]{Resources/Graphics/fig2_2.eps}
+    \caption{Med luftmotstånd}
+    \label{fig:2_2}
+\end{figure}
