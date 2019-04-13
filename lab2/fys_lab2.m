@@ -9,14 +9,12 @@ gcaSettings = {...
 
 labelSettings = {...
     'Interpreter','latex',...
-    'Fontsize', 18};
+    'Fontsize', 17};
 
-lineSpec = {'b-','r--','k:', 'k-.'};
+lineSpec = {'b','r','g','k','k--','k-.'};
 % -------------------------------------
 
 %% Part 1
-close all; clear
-
 
 % Custom function for loading 'weird' CSV files
 data1 = readcsvwithcomma('Data1.csv');
@@ -24,9 +22,9 @@ data1 = readcsvwithcomma('Data1.csv');
 t_1 = str2double(table2array(data1(2:end,2)));
 y_1 = str2double(table2array(data1(2:end,3)));
 v_1 = str2double(table2array(data1(2:end,4)));
-% Use for x-ylabel
-col = table2array(data1(1,:));
 
+% Use for labels
+col = table2array(data1(1,:));
 
 % Repair data set
 % In our experiment we had abnormal spikes, hence removal of 
@@ -49,34 +47,76 @@ y_1 = y_1 - mean(y_1(500:end));
 i_1 = 500;  % first index of searching
 [pks, loc] = findpeaks(y_1(i_1:end));
 w_1 = 2*pi * numel(pks)/ (t_1(i_1 + loc(end)) - t_1(i_1 + loc(1)));
-% w_1 = 3.867;
+% w_1 = 3.867;  % Counted manually =O
 
 figure(1)
 plot(t_1,y_1)
+set(gca,gcaSettings(1:2:end),gcaSettings(2:2:end))
+xlabel(col(2),labelSettings(1:2:end), labelSettings(2:2:end))
+ylabel(col(3),labelSettings(1:2:end), labelSettings(2:2:end))
 
-xlabel(col(2))
-ylabel(col(3))
-
+% Finding velocity
 dy = diff(y_1);
 dt = diff(t_1);
 v = dy./dt;
 
 figure(2)
 plot(y_1(2:end),v)
+set(gca,gcaSettings(1:2:end),gcaSettings(2:2:end))
+xlabel(col(3),labelSettings(1:2:end), labelSettings(2:2:end))
+ylabel(col(4),labelSettings(1:2:end), labelSettings(2:2:end))
 
-%K = v_1.^2;
+% Energy
 K = v.^2;
 U = (w_1.*y_1).^2;
 E = K + U(2:end);
-%E = K + U;
 
 figure(3)
-plot(t_1(2:end),K,'r')
 hold on
-plot(t_1,U,'g')
-plot(t_1(2:end),E,'b')
-axis([0 5 0 2])
+plot(t_1(2:end),K,lineSpec{2})
+plot(t_1,U,lineSpec{1})
+plot(t_1(2:end),E,lineSpec{4})
+set(gca,gcaSettings(1:2:end),gcaSettings(2:2:end))
+xlabel(col(2),labelSettings(1:2:end), labelSettings(2:2:end))
+ylabel('Energy (ummm)',labelSettings(1:2:end), labelSettings(2:2:end))
+axis([0 15 0 1.5])
 
+%% Part 2
+
+% Custom function for loading 'weird' CSV files
+data2 = readcsvwithcomma('Data2.csv');
+
+t_2 = str2double(table2array(data2(2:end,2)));
+y_2s = str2double(table2array(data2(2:end,3)));
+y_2m = str2double(table2array(data2(2:end,9)));
+
+% Repair data set
+% In our experiment we had abnormal spikes, hence removal of 
+% values y > 1.4
+for i=1:length(t_2)
+    if isnan(y_2s(i)) || y_2s(i) > 1.4
+        t_2(i) = NaN;
+        y_2s(i) = NaN;
+        y_2m(i) = NaN;
+    end
+end
+t_2 = rmmissing(t_2);
+y_2s = rmmissing(y_2s);
+y_2m = rmmissing(y_2m);
+
+% Normalise 
+y_2s = y_2s - mean(y_2s(8000:end));
+y_2m = y_2m - mean(y_2m(8000:9000));
+
+% Testing normalisation
+% visualmeananalysis(y_2m,100)
+
+% Finding angular velocity through finding peaks
+[mx, pos] = max(y_2s);
+[pks, loc] = findpeaks(y_2s(pos-100:pos+200));
+w_2 = 2*pi * numel(pks)/ (t_2(pos+200) - t_2(pos-100));
+
+% Finding angle between 2 curves
 
 
 
