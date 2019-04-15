@@ -60,7 +60,7 @@ saveas(gcf,'fig1_1','epsc')
 % Finding velocity
 dy = diff(y_1);
 dt = diff(t_1);
-v = dy./dt;
+v = dy./dt; % FIX THIS!
 
 figure(2)
 plot(y_1(2:end),v)
@@ -74,21 +74,20 @@ saveas(gcf,'fig1_2','epsc')
 
 % Energy
 K = v.^2;
-U = (w_1.*y_1).^2;
+U = (3.867.*y_1).^2;
 E = K + U(2:end);
 
 figure(3)
 hold on
-plot(t_1(2:end),K,lineSpec{2})
-plot(t_1,U,lineSpec{1})
+plot(t_1(2:end),K,'r-')
+plot(t_1,U,'b-')
 plot(t_1(2:end),E,lineSpec{4})
 set(gca,gcaSettings(1:2:end),gcaSettings(2:2:end))
 xlabel('$t/s$',labelSettings(1:2:end), labelSettings(2:2:end))
-ylabel('$E/m^{2}s^{-2}$',labelSettings(1:2:end), labelSettings(2:2:end))
+ylabel('$v^{2}$ $/m^{2}s^{-2}$',labelSettings(1:2:end), labelSettings(2:2:end))
 axis([0 15 0 1.5])
 
 % Finding half life
-
 % figure(31)
 % findpeaks(E(10:400), 'MinPeakDistance',10)
 % axis([0 300 0 max(E)])
@@ -101,9 +100,11 @@ Halveringstid = "Figur 3: " + 1/t_half + " s"
 chill = @(t) E_pk(1).*exp(-(t-t_1(E_loc(1))).*t_half);
 plot(t_1+t_1(E_loc(1)), chill(t_1),'r--', 'LineWidth',2)
 
-legend('K','V','E','Halveringstid');
-xticks(0:2:20)
-yticks(0:.5:2)
+leg = legend('$v^{2}$','$(\omega y)^{2}$',...
+    '$v^{2} + (\omega y)^{2}$',['Halveringstids' newline 'approximation']);
+set(leg, 'Interpreter','latex','Fontsize', 15)
+%xticks(0:2:20)
+%yticks(0:.5:2)
 saveas(gcf,'fig1_3','epsc')
 
 %% Part 2
@@ -142,27 +143,54 @@ y_2m = y_2m - mean(y_2m(8000:9000));
 w_2s_max = 2*pi * numel(s_pks)/ (t_2(s_loc(end)) - t_2(s_loc(1)));
 
 % Finding angular velocity for motor through finding peaks
-[m_pks, m_loc] = findpeaks(y_2m(pos-100:pos+100));
-w_2m = 2*pi * numel(m_pks)/ (t_2(m_loc(end)) - t_2(m_loc(1)));
+% from 0 to end
+steps = 300;
+for j = 1:(floor(numel(y_2m)/steps)-1)
+    m_i(j) = (j)*steps;
+    top_i(j) = max(y_2s(m_i(j)-steps/2:m_i(j)+steps/2));
+    [mm_pks, mm_loc] = findpeaks(y_2m(m_i(j)-steps/2:m_i(j)+steps/2));
+    w_2m(j) = 2*pi * numel(mm_pks)/ (t_2(mm_loc(end)) - t_2(mm_loc(1)));
+end
+
+% Plotting resonance
+figure(4)
+plot(w_2m./w_2s_max,top_i,'ro')
+hold on; 
+ax = axis;
+plot([1  1],[0 0.5],'k-')
+set(gca,gcaSettings(1:2:end),gcaSettings(2:2:end))
+axis(ax)
+xlabel('$\omega \cdot \omega_0^{-1}$',labelSettings(1:2:end), labelSettings(2:2:end))
+ylabel('$y/m$',labelSettings(1:2:end), labelSettings(2:2:end))
+xticks(0:.2:3)
+yticks(0:.1:1)
+saveas(gcf,'fig2_1','epsc')
 
 % Finding angle between 2 curves
+[m_pks, m_loc] = findpeaks(y_2m(pos-100:pos+100));
+w_2m = 2*pi * numel(m_pks)/ (t_2(m_loc(end)) - t_2(m_loc(1)));
 i = -100:5:100;
 index = pos+i;
 deg_s = mod((t_2(index) - t_2(s_loc(1)))*w_2s_max*180/pi,360);
 deg_m = mod((t_2(index) - t_2(m_loc(1)))*w_2m*180/pi,360);
 
+% Making plot of sine of angle difference
 for i=1:length(deg_s)
     alpha(i) = deg_s(i) - deg_m(i);
     if deg_s(i) < deg_m(i)
         alpha(i) = alpha(i) + 360;
     end
 end
-figure(4)
-hold on
+figure(5)
 plot(t_2(index), sind(alpha))
-ax = axis;
+hold on
 plot([t_2(pos), t_2(pos)],[-1.5 1.5],'k-')
-axis(ax)
+set(gca,gcaSettings(1:2:end),gcaSettings(2:2:end))
+xlabel('$t/s$',labelSettings(1:2:end), labelSettings(2:2:end))
+ylabel('$sin\alpha$',labelSettings(1:2:end), labelSettings(2:2:end))
+axis([322 331 0.8 1.02])
+xticks(320:2:350)
+yticks(0.5:.05:1.5)
 
 
 %% Part 3
