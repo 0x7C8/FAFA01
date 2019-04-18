@@ -1,0 +1,23 @@
+function y = plotsettings(x)
+
+gcaSettings = {...
+    'XGrid','on',...
+    'YGrid', 'on',...
+    'Fontsize', 13,...
+    'linewidth', 1,...
+    'FontName', 'Arial'};
+
+labelSettings = {...
+    'Interpreter','latex',...
+    'Fontsize', 17};
+
+switch(x)
+    case 'plot'
+        y = set(gca,gcaSettings(1:2:end),gcaSettings(2:2:end));
+    case 'label' % Does not work >:(
+        y = [labelSettings(1:2:end), labelSettings(2:2:end)];
+    otherwise
+        error('Invalid input')
+end
+
+end

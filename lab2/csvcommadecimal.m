@@ -1,6 +1,5 @@
-% Reads .cvs files that have ',' instead of '.' as decimal separator
-
-function y = readcsvwithcomma(filename)
+function y = csvcommadecimal(filename)
+% Reads .csv files that have ',' instead of '.' as decimal separator
 
 Data = fileread(filename);
 Data = strrep(Data, ',', '.');
