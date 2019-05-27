@@ -69,16 +69,31 @@ R = sqrt(X.^2 + Y.^2);  % Set radius as a function of X and Y
 theta_2 = atand(R/L);   % Angle
 
 figure(3)
-mesh(x,y,I_apt(beta(theta_2,D)));   % Plot 3D plot
-view(2);    % View from the top
+mesh(x,y,log10(I_apt(beta(theta_2,D))));   % Plot 3D plot in log10 scale
 colormap(gray)  % Gray gradient plot
-caxis([0 0.001]);   % Make dim lines more pronounced aka 'increase exposure'
+pbaspect([1 1 1])   % 1:1:1 plot aspect ratio
+caxis([-5 0])  % Color gradient adjustment
+view(2);    % View from the top
 set(gca,gcaSettings(1:2:end),gcaSettings(2:2:end))
 xlabel('$x/m$',labelSettings(1:2:end), labelSettings(2:2:end))
 ylabel('$y/m$',labelSettings(1:2:end), labelSettings(2:2:end))
 xticks(-0.5:0.25:0.5)
 yticks(-0.5:0.25:0.5)
 saveas(gcf,'fig5_3','epsc')
+%%
+view(3)
+axis([-0.5 0.5 -0.5 0.5 -5 0])
+caxis([-5 0.1])  % Color gradient adjustment
+zlabel('log$_{10}I(\theta)$',labelSettings(1:2:end), labelSettings(2:2:end))
+saveas(gcf,'fig5_4','epsc')
+
+
+
+
+
+
+
+
 
 
 

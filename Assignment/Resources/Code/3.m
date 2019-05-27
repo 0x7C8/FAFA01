@@ -1,3 +1,5 @@
+clear;clc;close all
+
 r_a = 25.1*10^6; % m
 r_p = 8.37*10^6; % m
 v_max = 8450; % m/s
@@ -32,8 +34,8 @@ set(gca,...
     'Fontsize', 13,...
     'linewidth', 1,...
     'FontName', 'Arial')
-xlabel('$x/10^3m$','Interpreter','latex','Fontsize', 17)
-ylabel('$y/10^3m$','Interpreter','latex','Fontsize', 17)
+xlabel('$x/10^6m$','Interpreter','latex','Fontsize', 17)
+ylabel('$y/10^6m$','Interpreter','latex','Fontsize', 17)
 text([-8.8*10^6 dots(1,2)-2*10^6 dots(1,3)-2*10^6],...
     [7.8*10^6 dots(2,2)+10^6 dots(2,3)+10^6], {'$r$' '$r_p$' '$r_a$'},...
     'Interpreter','latex','Fontsize', 17);
