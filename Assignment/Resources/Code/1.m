@@ -42,7 +42,7 @@ plot(t,log(I), 'k*')
 hold on
 plot(time, -1/T*time + log(I_0), 'k--')
 
-legend(['Logaritmerat' newline 'experimentella värden'], 'Anpassning');
+legend(['Logaritmerat' newline 'experimentella varden'], 'Anpassning');
 set(gca,gcaSettings(1:2:end),gcaSettings(2:2:end))
 xlabel('$t$/$ns$',labelSettings(1:2:end), labelSettings(2:2:end))
 ylabel('$log I(t)$',labelSettings(1:2:end), labelSettings(2:2:end))
@@ -62,7 +62,7 @@ plot(time, Y,'k-')
 plot(time, Y - sqrt(I_0).*exp(-time./T),'k.')
 plot(time, Y + sqrt(I_0).*exp(-time./T),'k.')
 
-legend('Experimentella värden', 'Modell', 'Osäkerhet');
+legend('Experimentella varden', 'Modell', 'Osakerhet');
 set(gca,gcaSettings(1:2:end),gcaSettings(2:2:end))
 xlabel('$t$/$ns$',labelSettings(1:2:end), labelSettings(2:2:end))
 ylabel('Antal emitterade fotoner',...

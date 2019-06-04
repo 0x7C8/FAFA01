@@ -1,1 +1,135 @@
 \section*{\centering Avbildningsfel}
+
+\subsection*{Teori}
+Detta avsnitt grundar sig på kapitel 32 i Tipler och Moscas bok \textit{Physics for Scientists and Engineers} (2008).
+\vspace{5mm}
+
+I verkligheten fokuserar inte konvexa linser ljus i exakt samma punkt. Skärningspunkten för strålar från olika vinklar och av olika våglängder varierar på grund av linsens form och material. Varierande skärningspunkt på grund av våglängd kallas \emph{kromatisk aberration}, medan varierande skärningspunkt på grund av avstånd mellan linsens centrumlinje och punkt där ljusstrålen träffar linsen kallas \emph{sfärisk aberration}. 
+
+Ljusets brytning i en sfärisk yta beskrivs av ekvation 1.
+\begin{equation}
+    \dfrac{n_{luft}}{s}+\dfrac{n_{glas}}{s'} =
+    \dfrac{n_{glas} - n_{luft}}{R}
+\end{equation}
+$n$ är brytningsindex för medium, $R$ är krökningsradien, $s$ är avstånd från ljuskälla till optisk axel, och $s'$ är avståndet från glasytans centrum till ljusets skärningspunkt ($f_b$) med den optiska axeln.
+
+Eftersom ljusstrålar infaller parallellt med varandra (då avståndet från ljuskälla till lins antas vara stort i förhållande till våglängd) så går $s \rightarrow \infty$ vilket innebär att $\dfrac{n_{luft}}{s} \rightarrow 0$. Detta ger
+
+\begin{equation}
+    \dfrac{n_{glas}}{s'} =
+    \dfrac{n_{glas} - n_{luft}}{R}.
+\end{equation}
+$s'$ kan ersättas med $f_b$ och ekvation 2 kan skrivas om till en formel för skärningspunkten;
+
+\begin{equation} \label{eq:f_b}
+    f_b =
+    \dfrac{Rn_{glas}}{n_{glas} - n_{luft}}.
+\end{equation}
+
+Problemet kan ställas upp geometrisk som i Figur~\ref{fig:4_2}.
+%för att hitta skärningspunkt inne i en sfärisk lins beroende på avståndet från linsens centrumlinje till punkten där ljusstråle träffar linsen ($h$). 
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering,margin=2cm}
+    \includegraphics[scale=0.7]{Resources/Graphics/fig4_2.eps}
+    \caption{Geometrisk representation av sfärisk lins: $R$ = krökningsradie med centrum i $C$. Den tjocka linjen representerar en ljusstråle som träffar linsen med infallsvinkeln $\theta_1$ på avstånd $h$ från centrallinjen och har refraktionsvinkel $\theta_2$ inne i linsen. Ljusstrålen har skärningspunkt i $f$. $L$ = avståndet i x-led mellan den punkt på glasytan där ljusstrålen träffar och $f$}.
+    \label{fig:4_2}
+\end{figure}
+
+Formel för brytning i plan yta:
+%%där $\theta_1$, brytningsvinkel $\theta_2$:
+\begin{equation} \label{eq:n_luft}
+    n_{luft}\text{sin}\theta_1 = n_{glas} \text{sin}\theta_2
+\end{equation}
+
+Enligt Figur~\ref{fig:4_2} gäller
+\begin{equation} \label{eq:tan_alpha}
+    \text{tan}\alpha = \dfrac{h}{2L},
+\end{equation}
+där 
+\begin{equation} \label{eq:alpha}
+    \alpha = |\theta_1 - \theta_2|,
+\end{equation}
+där
+
+\begin{center}
+    $-\dfrac{\pi}{2}<\theta_1 <\dfrac{\pi}{2}$
+    \quad och \quad
+    $\dfrac{n_{luft}}{n_{glas}} < 1$
+    \quad leder till \quad $|\theta_1| > |\theta_2|$.
+\end{center}
+Ekvation~\ref{eq:tan_alpha} och \ref{eq:alpha} ger
+
+\begin{equation} \label{eq:L}
+    L = \dfrac{h}{2\text{tan}(\theta_1-\theta_2)}.
+\end{equation}
+
+Om $\theta_2$ löses ut i ekvation 4 och detta uttryck sedan sätts in i ekvation 7 så blir
+\begin{equation} \label{eq:L_2}
+    L = \dfrac{h}{2\text{tan}\left(\theta_1-
+    \text{arcsin}\left(\dfrac{n_{luft}}{n_{glas}}
+    \text{sin}\theta_1\right)\right)}
+\end{equation}
+
+
+Position för skärningspunkt $f$ erhålls genom att addera $L$ ($L$ visas i Figur 1) med $R-a$ ($a$ visas i Figur 2).
+\begin{equation} \label{eq:focal}
+    f = L + (R-a)
+\end{equation}
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering,margin=2cm}
+    \includegraphics[scale=0.7]{Resources/Graphics/fig4_1.eps}
+    \caption{Geometrisk representation av sfärisk lins: $R$ = krökningsradie med centrum i $C$, $a$ = avstånd i x-led mellan $C$ och punkten (som i y-led är $h$ m från centrallinjen) där ljusstrålen träffar linsen.}
+    \label{fig:4_1}
+\end{figure}
+
+
+$R-a$ är det ''lilla avståndet'' i Figur 2 mellan glasytans centrum och den punkt som ligger längst till vänster på sträckan $a$. $a$ beräknas enligt
+\begin{equation} \label{eq:a} 
+    a = \sqrt{R^2-\dfrac{h^2}{4}}
+\end{equation}
+
+\subsection*{Resultat}
+Sfärisk aberration presenteras i Figur~\ref{fig:4_3}. Kromatisk aberration i BK7-glas presenteras i Figur~\ref{fig:4_4}~och~\ref{fig:4_5}.
+%%% Fig x2
+\begin{figure}[H]
+    \minipage{0.47\textwidth}
+        \includegraphics[width=\linewidth]{Resources/Graphics/fig4_3.eps}
+        \caption{Hel linje: Skärningspunkt $f$ i meter som funktion av avståndet $h$ i cm mellan linsens centrumlinje och punkten där ljusstrålen träffar glasytan. Streckad linje: Approximation av $f$ (ekvation~\ref{eq:f_b}).}\label{fig:4_3}
+    \endminipage\hfill
+    \minipage{0.47\textwidth}
+        \includegraphics[width=\linewidth]{Resources/Graphics/fig4_3_2.eps}
+        \caption{Visualisering av sfärisk aberration. 10 strålar som träffar linsen olika avstånd $h$ från centrumlinjen och möts inne i sfärisk lins på olika avstånd.}\label{fig:4_3_2}
+    \endminipage
+\end{figure}
+%%% Fig x2
+\begin{figure}[H]
+    \minipage{0.47\textwidth}
+        \includegraphics[width=\linewidth]{Resources/Graphics/fig4_4.eps}
+        \caption{Brytningsindex $n$ som funktion av våglängd $\lambda$ för glassorten BK7.}\label{fig:4_4}
+    \endminipage\hfill
+    \minipage{0.47\textwidth}
+        \includegraphics[width=\linewidth]{Resources/Graphics/fig4_5.eps}
+        \caption{Skärningspunkt $f$ som funktion av våglängd $\lambda$ för ljusstråle med krökningsradie 0,2 m i BK7-glas.}\label{fig:4_5}
+    \endminipage
+\end{figure}
+
+\subsection*{Kommentarer}
+I Figur~\ref{fig:4_3} syns det tydligt att det uppstår sfärisk aberration. Ekvation~\ref{eq:f_b} ger en ganska duglig approximation av skärningspunkten $f$ då den största avvikelse (sker då $h = d/2$) ligger under 0,5\%.
+\vspace{3mm}
+
+I Figur~\ref{fig:4_4} syns det inte så stor skillnad i brytningsindex mellan synliga våglängder, detta kan förklaras med att BK7-glas har högt \emph{Abbetal} i jämförelse med andra glassorter. Desto högre Abbetal desto mindre kromatisk aberration. $[2]$ % Its a hack!
+
+\subsection*{Referenser}
+$[1]$ Mosca, Gene; Tipler, A., Paul. 2008. \textit{Physics for Scientists and Engineers}. 6:e upplagan. W.H. Freeman and Company, New York.
+\vspace{2mm}
+
+$[2]$ \textit{Optical constants of BK7},   \url{https://refractiveindex.info/?shelf=glass&book=BK7&page=SCHOTT}
+
+\np
+\subsection*{MatLab-kod}
+
+\lstinputlisting[caption={\quad Funktion som plottar linsen}] {Resources/Code/lens_plot.m}
+\lstinputlisting[caption={\quad},firstline=2] {Resources/Code/4.m}
