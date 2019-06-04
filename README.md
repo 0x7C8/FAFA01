@@ -6,3 +6,4 @@ Files from FAFA01 ('18) course
 * [Lab 2 (only Matlab files)](lab2/)
 
 ## [Assignment](Assignment) (4/4 Points)
+ Source code for Latex document.
